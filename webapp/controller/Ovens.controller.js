@@ -1467,6 +1467,22 @@ sap.ui.define(
         oMessagePopover.getModel().setData({});
       },
 
+      onTableRowSelectionChange: function (oEvent) {
+        let rowsSelcted = oEvent.getSource().getSelectedIndices();
+
+        if (rowsSelcted.length === 1) {
+          this.byId('dclAndclsBtn').setEnabled(true);
+          this.byId('declearBtn').setEnabled(true);
+          return;
+        }
+
+        if (rowsSelcted.length === 0 || rowsSelcted.length > 1) {
+          this.byId('dclAndclsBtn').setEnabled(false);
+          this.byId('declearBtn').setEnabled(false);
+          return;
+        }
+      },
+
       getInitPost: function () {
         return {
           Linea: "",
@@ -1721,8 +1737,8 @@ sap.ui.define(
           this.updateOvenRecord(path, oAddOvensData).then(function (oData) {
             oGlobalBusyDialog.close();
 
-            let oModel = me.getView().getModel("modelOperario");   
-            let aData = oModel.getData();         
+            let oModel = me.getView().getModel("modelOperario");
+            let aData = oModel.getData();
             let oFilters = [];
             let sPath = "/OvenRecordsSet";
 
