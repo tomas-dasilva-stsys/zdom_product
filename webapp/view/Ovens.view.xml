@@ -4,7 +4,7 @@
     xmlns:l="sap.ui.layout"
     xmlns:c="sap.ui.core"
     xmlns:m="sap.m"
-    xmlns="sap.ui.table"    
+    xmlns="sap.ui.table"
     height="100%"
     xmlns:smartTable="sap.ui.comp.smarttable"
     xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
@@ -18,8 +18,8 @@
         <m:content>
             <smartTable:SmartTable
                 id="smartTableOvens"
+                tableType="Table"
                 tableBindingPath="UmModel>/"
-                
                 entitySet="UmModel>/"
                 header="{i18n>titleOvens}"
                 enableAutoBinding="true"
@@ -36,36 +36,64 @@
                 <Table
                     id="idTableOvens"
                     rows="{UmModel>/}"
-                    selectionMode="MultiToggle"
                     rowMode="Auto"
                     paste="onPaste"
                     filter="filterOrder"
                     columnResize="onColumnResize"
-                    alternateRowColors="false">
+                    alternateRowColors="false"  
+                    rowSelectionChange="onTableRowSelectionChange"
+                >
                     <extension>
                         <m:OverflowToolbar style="Clear">
                             <m:Title text="{i18n>titleOvensFilters}" />
                             <m:ToolbarSpacer />
-                            <m:SearchField id="idSearchField" placeholder="Filter" search="filterGlobally"
-                                width="15rem" />
+                            <m:SearchField
+                                id="idSearchField"
+                                placeholder="Filter"
+                                search="filterGlobally"
+                                width="15rem"
+                            />
                         </m:OverflowToolbar>
                         <m:OverflowToolbar style="Clear">
-                            <m:Avatar src="./test-resources/sap/uxap/images/robot.png"
-                                class="sapUiMediumMarginEnd" displayShape="Square" displaySize="M" />
-                            <m:Title text="{i18n>textLine}" class="sapUiTinyMarginBottom" />
-                            <m:Label text="{modelOperario>/WorkCenter}"
-                                class="sapUiTinyMarginBottom" />
-                            <m:Title text="{i18n>textCenter}" class="sapUiTinyMarginBottom" />
-                            <m:Label text="{modelOperario>/Plant}" class="sapUiTinyMarginBottom" />
-                            <m:Title text="{i18n>textWorker}" class="sapUiTinyMarginBottom" />
-                            <m:Label text="{modelOperario>/Operario}" class="sapUiTinyMarginBottom" />
+                            <m:Avatar
+                                src="./test-resources/sap/uxap/images/robot.png"
+                                class="sapUiMediumMarginEnd"
+                                displayShape="Square"
+                                displaySize="M"
+                            />
+                            <m:Title
+                                text="{i18n>textLine}"
+                                class="sapUiTinyMarginBottom"
+                            />
+                            <m:Label
+                                text="{modelOperario>/WorkCenter}"
+                                class="sapUiTinyMarginBottom"
+                            />
+                            <m:Title
+                                text="{i18n>textCenter}"
+                                class="sapUiTinyMarginBottom"
+                            />
+                            <m:Label
+                                text="{modelOperario>/Plant}"
+                                class="sapUiTinyMarginBottom"
+                            />
+                            <m:Title
+                                text="{i18n>textWorker}"
+                                class="sapUiTinyMarginBottom"
+                            />
+                            <m:Label
+                                text="{modelOperario>/Operario}"
+                                class="sapUiTinyMarginBottom"
+                            />
                         </m:OverflowToolbar>
                     </extension>
                     <columns>
                         <Column width="100px">
                             <customData>
-                                <c:CustomData key="p13nData"
-                                    value='\{"columnKey": "Um","leadingProperty": "Um"}' />
+                                <c:CustomData
+                                    key="p13nData"
+                                    value='\{"columnKey": "Um","leadingProperty": "Um"}'
+                                />
                             </customData>
                             <m:Label text="{i18n>textlabelHandlingUnit}" />
                             <template>
@@ -85,7 +113,9 @@
                             </template>
                         </Column>
                         <Column width="auto">
-                            <m:Label text="{i18n>textColumnMaterialDescription}" />
+                            <m:Label
+                                text="{i18n>textColumnMaterialDescription}"
+                            />
                             <template>
                                 <m:Text text="{UmModel>Description}" />
                             </template>
@@ -97,7 +127,9 @@
                             </template>
                         </Column>
                         <Column width="auto">
-                            <m:Label text="{i18n>textColumnMaterialDescription}" />
+                            <m:Label
+                                text="{i18n>textColumnMaterialDescription}"
+                            />
                             <template>
                                 <m:Text text="{UmModel>DesComponent}" />
                             </template>
@@ -126,24 +158,35 @@
                                 <m:Text text="{UmModel>CantRest}" />
                             </template>
                         </Column>
-                        <Column width="auto" hAlign="Center">
+                        <Column
+                            width="auto"
+                            hAlign="Center"
+                        >
                             <m:Label text="{i18n>textColumnStartDate}" />
                             <template>
                                 <m:Text
-                                    text="{ path: 'UmModel>BeginDate', formatter: '.formatter.formatDate' }" />
+                                    text="{ path: 'UmModel>BeginDate', formatter: '.formatter.formatDate' }"
+                                />
                             </template>
                         </Column>
                         <Column width="auto">
                             <m:Label text="{i18n>textColumnStartTime}" />
                             <template>
-                                <m:Text width="80%" text="{UmModel>BeginTime}" />
+                                <m:Text
+                                    width="80%"
+                                    text="{UmModel>BeginTime}"
+                                />
                             </template>
                         </Column>
-                        <Column width="auto" hAlign="Center">
+                        <Column
+                            width="auto"
+                            hAlign="Center"
+                        >
                             <m:Label text="{i18n>textColumnEndtDate}" />
                             <template>
                                 <m:Text
-                                    text="{ path: 'UmModel>EndDate', formatter: '.formatter.formatDate' }" />
+                                    text="{ path: 'UmModel>EndDate', formatter: '.formatter.formatDate' }"
+                                />
                             </template>
                         </Column>
                         <Column width="auto">
@@ -179,20 +222,26 @@
                 </m:Button>
 
                 <m:Button
+                    id="dclAndclsBtn"
                     tooltip="Crear"
                     icon="sap-icon://create"
+                    enabled="false"
                     text="{i18n>textButtonClose}"
-                    press="handleDetailsPress($event,true)">
+                    press="handleDetailsPress($event,true)"
+                >
                     <m:layoutData>
                         <m:OverflowToolbarLayoutData priority="NeverOverflow" />
                     </m:layoutData>
                 </m:Button>
 
                 <m:Button
+                    id="declearBtn"
                     tooltip="Crear"
                     icon="sap-icon://create"
+                    enabled="false"
                     text="{i18n>textButtonDeclare}"
-                    press="handleDetailsPress($event,false)">
+                    press="handleDetailsPress($event,false)"
+                >
                     <m:layoutData>
                         <m:OverflowToolbarLayoutData priority="NeverOverflow" />
                     </m:layoutData>
