@@ -929,6 +929,19 @@ sap.ui.define(
 
         var oModelOperario = me.getView().getModel("modelOperario");
         var oDataOperario = oModelOperario.getData();
+        let oModelUm = me.getView().getModel('UmModel');
+        let currentUms = oModelUm.getData().map(um => um.Um);
+        let oAufnrsModel = new sap.ui.model.json.JSONModel();
+
+        for (let um of currentUms) {
+          if (um === pHandlingUnit) {
+            sap.m.MessageToast.show(oResourceBundle.getText('textErrorUmDuplicated'));
+            oGlobalBusyDialog.close();
+            oAufnrsModel.setData({ aufnrs: [] });
+            this.getView().setModel(oAufnrsModel, "aufnrsModel");
+            return;
+          }
+        }
 
         var oPayload = {
           Werks: oDataOperario.Plant,
@@ -952,9 +965,10 @@ sap.ui.define(
 
             if (oData.ReturnSet.results.length > 0) {
               if (oData.ReturnSet.results[0].Type == "E") {
-                sap.m.MessageToast.show(
-                  oData.ReturnSet.results[0].Message
-                );
+                sap.m.MessageToast.show(oData.ReturnSet.results[0].Message);
+
+                oAufnrsModel.setData({ aufnrs: [] });
+                this.getView().setModel(oAufnrsModel, "aufnrsModel");
                 return;
               } else {
 
