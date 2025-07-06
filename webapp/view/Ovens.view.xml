@@ -36,7 +36,7 @@
                 <Table
                     id="idTableOvens"
                     rows="{UmModel>/}"
-                    selectionMode="Single"
+                    selectionMode="MultiToggle"
                     rowMode="Auto"
                     paste="onPaste"
                     filter="filterOrder"
