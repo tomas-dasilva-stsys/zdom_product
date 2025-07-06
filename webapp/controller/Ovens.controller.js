@@ -297,6 +297,9 @@ sap.ui.define(
       loadPopUp: function (oData) {
         // Refresh Popup
         me.onClean(false);
+
+        console.log('test de push')
+
         if (
           oData &&
           oData.ProductionDeclarationSet &&
