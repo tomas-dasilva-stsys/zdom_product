@@ -1351,6 +1351,7 @@ sap.ui.define([
                 var sVerid = this.getView().getModel("WoutJSON").getProperty("/Verid");
                 var sPlant = this.getView().getModel("WoutJSON").getProperty("/Plant");
                 var sWorkCenter = this.getView().getModel("WoutJSON").getProperty("/WorkCenter");
+                let aufnr = this.getView().getModel("WoutJSON").getProperty("/Aufnr");
                 var sobjek = sPlant + sWorkCenter;
                 var iQuantity = parseInt(sQuantity).toFixed(3)
                 //var oParameter = { "Packnr": sPallet, "Cantidad": iQuantity, "Objek": sobjek };
@@ -1362,7 +1363,8 @@ sap.ui.define([
                     "Matnr": sMatnr,
                     "Matnr1": sMatnr1,
                     "Objek": sobjek,
-                    "Packnr": sPallet
+                    "Packnr": sPallet,
+                    "Aufnr": aufnr,
                 };
 
                 return new Promise(function (resolve, reject) {
